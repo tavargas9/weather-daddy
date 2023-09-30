@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Daddy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="styleseet" href="./assets/css/styles.css" />
+    <link rel="stylesheet" href="./assets/css/weather-icons.min.css"/>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
 <body>
     <header class="relative">
@@ -43,7 +44,7 @@
                 <p class="ml-2 text-6xl text-gray-900 font-bold">Weather Daddy</p>
             </div>
             <div class="text-center mt-6">
-                <h1 class="text-4xl font-bold tracking-tight text-indigo-600 sm:text-6xl">5-Day Weather Forecast Data</h1>
+                <h1 class="text-4xl font-bold tracking-tight text-indigo-600 sm:text-6xl">5-Day Weather Forecast Data You Can Trust.</h1>
                 <p class="mt-6 text-lg leading-8 text-gray-600">Use the search bar in the header above to search by city or zip code and see the current weather data and a 5-day weather forecast.</p>
                 <div class="mt-10 flex items-center justify-center gap-x-6">
                 <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get a random forecast</a>
@@ -52,6 +53,7 @@
             </div>
             </div>
         </div>
+
     <!--Current weather section-->
         <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" >
             <img src="https://images.unsplash.com/photo-1551590192-8070a16d9f67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3500&q=80" alt="" class="absolute blur-3xl inset-0 -z-10 h-full w-full object-cover object-right md:object-center">
@@ -63,9 +65,16 @@
             </div>
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
               <div class="mx-auto max-w-2xl lg:mx-0">
-                <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Atlanta, GA <span class="text-gray-300">09/29/2023</span></h2>
-                <p class="mt-4 text-lg leading-8 text-gray-300">Local Time: <span class="text-white">8:30pm</span></p>
-                <p class="mt-6 text-lg leading-8 text-gray-300">Partly cloudy</p>
+                <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Atlanta, GA <span class="text-gray-300">9/29/2023</span></h2>
+                <p class="mt-4 text-lg leading-8 text-gray-300">
+                    Local Time: <span class="text-white">8:30pm</span>
+                </p>
+                <p class="mt-6 leading-8 text-gray-300 text-4xl font-bold">
+                    Partly cloudy <i class="wi wi-day-cloudy"></i>
+                </p>
+                <p class="mt-4 text-lg leading-8 text-gray-300">
+                    Chance of rain: <span class="text-white">10%</span>
+                </p>
               </div>
               <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
                 <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
@@ -98,18 +107,23 @@
                     <div class="p-8 sm:p-10 lg:flex-auto">
                     <h3 class="text-2xl font-bold tracking-tight text-gray-900">Thursday <span class="text-gray-400">9/14/2023</span></h3>
                     <div class="mt-10 flex items-center gap-x-4">
-                        <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">Partly cloudy</h4>
+                        <h4 class="flex-none text-xl font-semibold leading-6 text-indigo-600">
+                            Partly cloudy <i class="wi wi-cloudy"></i>
+                        </h4>
                         <div class="h-px flex-auto bg-gray-100"></div>
                     </div>
                     <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600">
-                        <li class="flex gap-x-3">
-                        Temp
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-thermometer"></i>
+                            Temp: <span>80&deg; F / 27&deg; C</span>
                         </li>
-                        <li class="flex gap-x-3">
-                        Wind
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-strong-wind"></i>
+                            Wind: <span>3.94 MPH</span>
                         </li>
-                        <li class="flex gap-x-3">
-                        Humidity
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-humidity"></i>
+                            Humidity: <span>30%</span>
                         </li>
                     </ul>
                     </div>
@@ -118,18 +132,23 @@
                     <div class="p-8 sm:p-10 lg:flex-auto">
                     <h3 class="text-2xl font-bold tracking-tight text-gray-900">Thursday <span class="text-gray-400">9/14/2023</span></h3>
                     <div class="mt-10 flex items-center gap-x-4">
-                        <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">Partly cloudy</h4>
+                        <h4 class="flex-none text-xl font-semibold leading-6 text-indigo-600">
+                            Partly cloudy <i class="wi wi-cloudy"></i>
+                        </h4>
                         <div class="h-px flex-auto bg-gray-100"></div>
                     </div>
                     <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600">
-                        <li class="flex gap-x-3">
-                        Temp
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-thermometer"></i>
+                            Temp: <span>80&deg; F / 27&deg; C</span>
                         </li>
-                        <li class="flex gap-x-3">
-                        Wind
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-strong-wind"></i>
+                            Wind: <span>3.94 MPH</span>
                         </li>
-                        <li class="flex gap-x-3">
-                        Humidity
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-humidity"></i>
+                            Humidity: <span>30%</span>
                         </li>
                     </ul>
                     </div>
@@ -138,18 +157,23 @@
                     <div class="p-8 sm:p-10 lg:flex-auto">
                     <h3 class="text-2xl font-bold tracking-tight text-gray-900">Thursday <span class="text-gray-400">9/14/2023</span></h3>
                     <div class="mt-10 flex items-center gap-x-4">
-                        <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">Partly cloudy</h4>
+                        <h4 class="flex-none text-xl font-semibold leading-6 text-indigo-600">
+                            Partly cloudy <i class="wi wi-cloudy"></i>
+                        </h4>
                         <div class="h-px flex-auto bg-gray-100"></div>
                     </div>
                     <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600">
-                        <li class="flex gap-x-3">
-                        Temp
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-thermometer"></i>
+                            Temp: <span>80&deg; F / 27&deg; C</span>
                         </li>
-                        <li class="flex gap-x-3">
-                        Wind
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-strong-wind"></i>
+                            Wind: <span>3.94 MPH</span>
                         </li>
-                        <li class="flex gap-x-3">
-                        Humidity
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-humidity"></i>
+                            Humidity: <span>30%</span>
                         </li>
                     </ul>
                     </div>
@@ -158,18 +182,23 @@
                     <div class="p-8 sm:p-10 lg:flex-auto">
                     <h3 class="text-2xl font-bold tracking-tight text-gray-900">Thursday <span class="text-gray-400">9/14/2023</span></h3>
                     <div class="mt-10 flex items-center gap-x-4">
-                        <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">Partly cloudy</h4>
+                        <h4 class="flex-none text-xl font-semibold leading-6 text-indigo-600">
+                            Partly cloudy <i class="wi wi-cloudy"></i>
+                        </h4>
                         <div class="h-px flex-auto bg-gray-100"></div>
                     </div>
                     <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600">
-                        <li class="flex gap-x-3">
-                        Temp
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-thermometer"></i>
+                            Temp: <span>80&deg; F / 27&deg; C</span>
                         </li>
-                        <li class="flex gap-x-3">
-                        Wind
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-strong-wind"></i>
+                            Wind: <span>3.94 MPH</span>
                         </li>
-                        <li class="flex gap-x-3">
-                        Humidity
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-humidity"></i>
+                            Humidity: <span>30%</span>
                         </li>
                     </ul>
                     </div>
@@ -178,18 +207,23 @@
                     <div class="p-8 sm:p-10 lg:flex-auto">
                     <h3 class="text-2xl font-bold tracking-tight text-gray-900">Thursday <span class="text-gray-400">9/14/2023</span></h3>
                     <div class="mt-10 flex items-center gap-x-4">
-                        <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">Partly cloudy</h4>
+                        <h4 class="flex-none text-xl font-semibold leading-6 text-indigo-600">
+                            Partly cloudy <i class="wi wi-cloudy"></i>
+                        </h4>
                         <div class="h-px flex-auto bg-gray-100"></div>
                     </div>
                     <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600">
-                        <li class="flex gap-x-3">
-                        Temp
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-thermometer"></i>
+                            Temp: <span>80&deg; F / 27&deg; C</span>
                         </li>
-                        <li class="flex gap-x-3">
-                        Wind
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-strong-wind"></i>
+                            Wind: <span>3.94 MPH</span>
                         </li>
-                        <li class="flex gap-x-3">
-                        Humidity
+                        <li class="flex gap-x-3 items-center">
+                            <i class="wi wi-humidity"></i>
+                            Humidity: <span>30%</span>
                         </li>
                     </ul>
                     </div>
