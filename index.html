@@ -3,14 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="styleseet" href="./assets/css/styles.css" />
-
     <title>Weather Daddy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="styleseet" href="./assets/css/styles.css" />
 </head>
 <body>
-    
+    <header>
+        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <div class="flex lg:flex">
+              <a href="#" class="flex flex-col -m-1.5 p-1.5 items-center">
+                <img class="h-10 w-auto" src="./assets/icons/man-under-rain-loosing-umbrella-svgrepo-com.svg" alt="">
+              </a>
+            </div>
+
+        <!--search bar form:-->
+          <form id="search-bar" class="mx-auto flex items-center justify-center lg:flex-1">
+            <div class="relative rounded-md shadow-sm lg:w-96">
+              <input type="text" name="search-input" id="search-input" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Search">
+              <div class="absolute inset-y-0 right-0 flex items-center">
+                <select id="search-type" name="search-type" class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
+                  <option>City Name</option>
+                  <option>Zip Code</option>
+                </select>
+              </div>
+            </div>
+            <button id="search-btn" class="rounded-md bg-indigo-600 px-3.5 py-2 ml-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                    <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z" clip-rule="evenodd" />
+                  </svg>                  
+            </button>
+          </form>
+
+            <!--dropdown menu-->
+            <div class="flex gap-x-12">
+                <div class="relative">
+                    <button id="dropdown-btn" type="button" class="group flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900" aria-expanded="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:text-indigo-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                    <!--Dropdown content:-->
+                    <div id="dropdown-content" class="absolute -left-6 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden">
+                    <div class="p-4">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                        <div class="flex-auto">
+                            <a href="#" class="block font-semibold text-gray-900">
+                            About Us
+                            <span class="absolute inset-0"></span>
+                            </a>
+                        </div>
+                        </div>
+                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                        <div class="flex-auto">
+                            <a href="#" class="block font-semibold text-gray-900">
+                            Contact Us
+                            <span class="absolute inset-0"></span>
+                            </a>
+                        </div>
+                        </div>
+                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                        <div class="flex-auto">
+                            <a href="#" class="block font-semibold text-gray-900">
+                            FAQ
+                            <span class="absolute inset-0"></span>
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+        
+    </header>
+
+    <div id="hero" class="relative isolate px-6 pt-14 lg:px-8">
+        <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">   
+          <div class="flex flex-col -m-1.5 p-1.5 items-center">
+            <img class="h-20 w-auto" src="./assets/icons/man-under-rain-loosing-umbrella-svgrepo-com.svg" alt="">
+            <p class="ml-2 text-6xl text-gray-900 font-bold">Weather Daddy</p>
+          </div>
+          <div class="text-center mt-6">
+            <h1 class="text-4xl font-bold tracking-tight text-indigo-600 sm:text-6xl">5-Day Weather Forecast Data</h1>
+            <p class="mt-6 text-lg leading-8 text-gray-600">Use the search bar in the header above to search by city or zip code and see the current weather data and a 5-day weather forecast.</p>
+            <div class="mt-10 flex items-center justify-center gap-x-6">
+              <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get a random forecast</a>
+              <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <footer>
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>  
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
