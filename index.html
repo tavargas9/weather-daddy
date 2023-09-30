@@ -66,30 +66,27 @@
             </div>
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
               <div class="mx-auto max-w-2xl lg:mx-0">
-                <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Atlanta, GA <span class="text-gray-300">9/29/2023</span></h2>
+                <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl"><span id="current-city">Atlanta, Georgia</span><span id="current-date" class="text-gray-300 ml-2">9/29/2023</span></h2>
                 <p class="mt-4 text-lg leading-8 text-gray-300">
                     Local Time: <span class="text-white">8:30pm</span>
                 </p>
                 <p class="mt-6 leading-8 text-gray-300 text-4xl font-bold">
                     Partly cloudy <i class="wi wi-day-cloudy"></i>
                 </p>
-                <p class="mt-4 text-lg leading-8 text-gray-300">
-                    Chance of rain: <span class="text-white">10%</span>
-                </p>
               </div>
               <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
                 <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
                   <div class="flex flex-col">
                     <dt class="text-base leading-7 text-gray-300">Current Temperature</dt>
-                    <dd class="text-2xl font-bold leading-9 tracking-tight text-white">80&deg; F / 27&deg; C</dd>
+                    <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><span id="current-temp">80</span>&deg; F</dd>
                   </div>
                   <div class="flex flex-col">
                     <dt class="text-base leading-7 text-gray-300">Humidity</dt>
-                    <dd class="text-2xl font-bold leading-9 tracking-tight text-white">30%</dd>
+                    <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><span id="current-humidity">30</span>%</dd>
                   </div>
                   <div class="flex flex-col">
                     <dt class="text-base leading-7 text-gray-300">Wind Speed</dt>
-                    <dd class="text-2xl font-bold leading-9 tracking-tight text-white">8.43 MPH</dd>
+                    <dd class="text-2xl font-bold leading-9 tracking-tight text-white"><span id="current-windspeed">8.43</span> MPH</dd>
                   </div>
                 </dl>
               </div>
@@ -98,12 +95,13 @@
 
          <div>
 
-            <!--5 day forecast section-->
+            <!--5 day forecast header-->
             <div class="text-center mt-8">
                 <h2 class="text-4xl font-bold tracking-tight text-indigo-600 sm:text-6xl">5-Day Forecast:</h2>
             </div>
-
+            <!--5 day forecast container-->
             <div class="flex lg:flex-row flex-col lg:flex-wrap justify-center items-center">
+                <!--Day 1 forecast card-->
                 <div class="mx-5 mt-16 w-full rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-3 lg:my-16 lg:flex lg:max-w-sm ">
                     <div class="p-8 sm:p-10 lg:flex-auto">
                     <h3 class="text-2xl font-bold tracking-tight text-gray-900">Thursday <span class="text-gray-400">9/14/2023</span></h3>
@@ -129,6 +127,7 @@
                     </ul>
                     </div>
                 </div>
+                <!--Day 2 forecast card-->
                 <div class="mx-5 mt-16 w-full rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-3 lg:my-16 lg:flex lg:max-w-sm ">
                     <div class="p-8 sm:p-10 lg:flex-auto">
                     <h3 class="text-2xl font-bold tracking-tight text-gray-900">Thursday <span class="text-gray-400">9/14/2023</span></h3>
@@ -154,6 +153,7 @@
                     </ul>
                     </div>
                 </div>
+                <!--Day 3 forecast card-->
                 <div class="mx-5 mt-16 w-full rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-3 lg:my-16 lg:flex lg:max-w-sm ">
                     <div class="p-8 sm:p-10 lg:flex-auto">
                     <h3 class="text-2xl font-bold tracking-tight text-gray-900">Thursday <span class="text-gray-400">9/14/2023</span></h3>
@@ -179,6 +179,7 @@
                     </ul>
                     </div>
                 </div>
+                <!--Day 4 forecast card-->
                 <div class="mx-5 mt-16 w-full rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-3 lg:my-16 lg:flex lg:max-w-sm ">
                     <div class="p-8 sm:p-10 lg:flex-auto">
                     <h3 class="text-2xl font-bold tracking-tight text-gray-900">Thursday <span class="text-gray-400">9/14/2023</span></h3>
@@ -204,6 +205,7 @@
                     </ul>
                     </div>
                 </div>
+                <!--Day 5 forecast card-->
                 <div class="mx-5 mt-16 w-full rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-3 lg:my-16 lg:flex lg:max-w-sm ">
                     <div class="p-8 sm:p-10 lg:flex-auto">
                     <h3 class="text-2xl font-bold tracking-tight text-gray-900">Thursday <span class="text-gray-400">9/14/2023</span></h3>
