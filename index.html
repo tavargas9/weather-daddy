@@ -56,7 +56,7 @@
         </div>
 
     <!--Current weather section-->
-        <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 mt-10" >
+        <div id="current-weather-section" class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 mt-10 hidden" >
             <img src="https://images.unsplash.com/photo-1551590192-8070a16d9f67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3500&q=80" alt="" class="absolute blur-3xl inset-0 -z-10 h-full w-full object-cover object-right md:object-center">
             <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
               <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
@@ -66,12 +66,12 @@
             </div>
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
               <div class="mx-auto max-w-2xl lg:mx-0">
-                <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl"><span id="current-city">Atlanta, Georgia</span><span id="current-date" class="text-gray-300 ml-2">9/29/2023</span></h2>
+                <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl"><span id="current-city">No location found</span><span id="current-date" class="text-gray-300 ml-2"></span></h2>
                 <p class="mt-4 text-lg leading-8 text-gray-300">
                     Local Time: <span class="text-white">8:30pm</span>
                 </p>
                 <p id="current-weather-desc" class="mt-6 leading-8 text-gray-300 text-4xl font-bold">
-                    Partly cloudy <i class="wi wi-day-cloudy"></i>
+                    please input a valid location
                 </p>
               </div>
               <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
@@ -96,6 +96,7 @@
          <div>
 
             <!--5 day forecast header-->
+        <div id="5-day-forecast-section" class="hidden">
             <div class="text-center mt-8">
                 <h2 class="text-4xl font-bold tracking-tight text-indigo-600 sm:text-6xl">5-Day Forecast:</h2>
             </div>

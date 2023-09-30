@@ -10,6 +10,7 @@ var currentWindSpeedEl = document.getElementById('current-windspeed');
 var heroSection = document.getElementById('hero');
 var currentWeatherDescEl = document.getElementById('current-weather-desc');
 var headerLogoBtn = document.getElementById('header-logo');
+var currentWeatherSectionEl = document.getElementById('current-weather-section');
 
 function handleSearch(event){
     event.preventDefault();
@@ -19,6 +20,9 @@ function handleSearch(event){
         if (searchValue) {
             if (!heroSection.classList.contains('hidden')){
             heroSection.classList.add('hidden');
+            };
+            if (currentWeatherSectionEl.classList.contains('hidden')){
+                currentWeatherSectionEl.classList.remove('hidden');
             };
             let weatherUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchValue + '&limit=5&appid=d6785378d43b5947bd65e1cc7f7f5175';
             fetch(weatherUrl)
@@ -48,6 +52,9 @@ function handleSearch(event){
         if (searchValue) {
             if (!heroSection.classList.contains('hidden')){
             heroSection.classList.add('hidden');
+            };
+            if (currentWeatherSectionEl.classList.contains('hidden')){
+                currentWeatherSectionEl.classList.remove('hidden');
             };
             let weatherUrl = 'http://api.openweathermap.org/geo/1.0/zip?zip=' + searchValue + '&appid=d6785378d43b5947bd65e1cc7f7f5175';
             fetch(weatherUrl)
