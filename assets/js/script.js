@@ -3,6 +3,7 @@ var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&
 var searchBarForm =  document.getElementById('search-bar');
 var searchTypeSelector = document.getElementById('search-type');
 var searchInput = document.getElementById('search-input');
+var searchBtn = document.getElementById('search-btn');
 var currentCityEl = document.getElementById('current-city');
 var currentTempEl = document.getElementById('current-temp');
 var currentHumidityEl = document.getElementById('current-humidity');
@@ -238,6 +239,9 @@ function showFiveDayForecast() {
 
 
 searchBarForm.addEventListener('submit', handleSearch);
+searchBtn.addEventListener('click', function(){
+    window.scrollTo(0, 0);
+});
 headerLogoBtn.addEventListener('click', function(){
     location.reload();
     window.scrollTo(0, 0);
