@@ -1,5 +1,3 @@
-var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=d6785378d43b5947bd65e1cc7f7f5175'
-
 var searchBarForm =  document.getElementById('search-bar');
 var searchTypeSelector = document.getElementById('search-type');
 var searchInput = document.getElementById('search-input');
@@ -15,42 +13,51 @@ var currentWeatherSectionEl = document.getElementById('current-weather-section')
 var currentDateEl = document.getElementById('current-date');
 var fiveDayForecastEl = document.getElementById('5-day-forecast-section');
 
-var dayOneWeatherDescEl = document.getElementById('day1-weather-desc');
-var dayTwoWeatherDescEl = document.getElementById('day2-weather-desc');
-var dayThreeWeatherDescEl = document.getElementById('day3-weather-desc');
-var dayFourWeatherDescEl = document.getElementById('day4-weather-desc');
-var dayFiveWeatherDescEl = document.getElementById('day5-weather-desc');
+var dateElements = [
+    'null',
+    document.getElementById('day1-date'),
+    document.getElementById('day2-date'),
+    document.getElementById('day3-date'),
+    document.getElementById('day4-date'),
+    document.getElementById('day5-date')
+];
+var dayOfWeekElements = [
+    'null',
+    document.getElementById('day1-dayOfWeek'),
+    document.getElementById('day2-dayOfWeek'),
+    document.getElementById('day3-dayOfWeek'),
+    document.getElementById('day4-dayOfWeek'),
+    document.getElementById('day5-dayOfWeek')
+];
+var humidityElements = [
+    document.getElementById('day1-humidity'),
+    document.getElementById('day2-humidity'),
+    document.getElementById('day3-humidity'),
+    document.getElementById('day4-humidity'),
+    document.getElementById('day5-humidity') 
+];
+var weatherDescElements = [
+    document.getElementById('day1-weather-desc'),
+    document.getElementById('day2-weather-desc'),
+    document.getElementById('day3-weather-desc'),
+    document.getElementById('day4-weather-desc'),
+    document.getElementById('day5-weather-desc')
+];
+var tempElements = [
+    document.getElementById('day1-temp'),
+    document.getElementById('day2-temp'),
+    document.getElementById('day3-temp'),
+    document.getElementById('day4-temp'),
+    document.getElementById('day5-temp')
+];
+var windElements = [
+    document.getElementById('day1-wind'),
+    document.getElementById('day2-wind'),
+    document.getElementById('day3-wind'),
+    document.getElementById('day4-wind'),
+    document.getElementById('day5-wind')
+]
 
-var dayOneHumidityEl = document.getElementById('day1-humidity');
-var dayOneWindEl = document.getElementById('day1-wind');
-var dayOneTempEl = document.getElementById('day1-temp');
-
-var dayTwoHumidityEl = document.getElementById('day2-humidity');
-var dayTwoWindEl = document.getElementById('day2-wind');
-var dayTwoTempEl = document.getElementById('day2-temp');
-
-var dayThreeHumidityEl = document.getElementById('day3-humidity');
-var dayThreeWindEl = document.getElementById('day3-wind');
-var dayThreeTempEl = document.getElementById('day3-temp');
-
-var dayFourHumidityEl = document.getElementById('day4-humidity');
-var dayFourWindEl = document.getElementById('day4-wind');
-var dayFourTempEl = document.getElementById('day4-temp');
-
-var dayFiveHumidityEl = document.getElementById('day5-humidity');
-var dayFiveWindEl = document.getElementById('day5-wind');
-var dayFiveTempEl = document.getElementById('day5-temp');
-
-var dayOneDayEl = document.getElementById('day1-dayOfWeek');
-var dayOneDateEl = document.getElementById('day1-date');
-var dayTwoDayEl = document.getElementById('day2-dayOfWeek');
-var dayTwoDateEl = document.getElementById('day2-date');
-var dayThreeDayEl = document.getElementById('day3-dayOfWeek');
-var dayThreeDateEl = document.getElementById('day3-date');
-var dayFourDayEl = document.getElementById('day4-dayOfWeek');
-var dayFourDateEl = document.getElementById('day4-date');
-var dayFiveDayEl = document.getElementById('day5-dayOfWeek');
-var dayFiveDateEl = document.getElementById('day5-date');
 
 function handleSearch(event){
     event.preventDefault();
@@ -101,41 +108,24 @@ function handleSearch(event){
                             return response.json();
                         })
                         .then(function(data){
-                            console.log(data);
-                            dayOneWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[0].weather[0].icon + '@2x.png" /> ' + data.list[0].weather[0].description
-                            dayTwoWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[1].weather[0].icon + '@2x.png" /> ' + data.list[1].weather[0].description
-                            dayThreeWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[2].weather[0].icon + '@2x.png" /> ' + data.list[2].weather[0].description
-                            dayFourWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[3].weather[0].icon + '@2x.png" /> ' + data.list[3].weather[0].description
-                            dayFiveWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[4].weather[0].icon + '@2x.png" /> ' + data.list[4].weather[0].description
-
-                            dayOneTempEl.textContent = data.list[0].main.temp
-                            dayTwoTempEl.textContent = data.list[1].main.temp
-                            dayThreeTempEl.textContent = data.list[2].main.temp
-                            dayFourTempEl.textContent = data.list[3].main.temp
-                            dayFiveTempEl.textContent = data.list[4].main.temp
-
-                            dayOneHumidityEl.textContent = data.list[0].main.humidity
-                            dayTwoHumidityEl.textContent = data.list[1].main.humidity
-                            dayThreeHumidityEl.textContent = data.list[2].main.humidity
-                            dayFourHumidityEl.textContent = data.list[3].main.humidity
-                            dayFiveHumidityEl.textContent = data.list[4].main.humidity
-                            
-                            dayOneWindEl.textContent = data.list[0].wind.speed
-                            dayTwoWindEl.textContent = data.list[1].wind.speed
-                            dayThreeWindEl.textContent = data.list[2].wind.speed
-                            dayFourWindEl.textContent = data.list[3].wind.speed
-                            dayFiveWindEl.textContent = data.list[4].wind.speed
-
-                            dayOneDayEl.textContent = dayjs().add(1,'day').format('dddd');
-                            dayOneDateEl.textContent = dayjs().add(1,'day').format('M/D/YYYY');
-                            dayTwoDayEl.textContent = dayjs().add(2,'day').format('dddd');
-                            dayTwoDateEl.textContent = dayjs().add(2,'day').format('M/D/YYYY');
-                            dayThreeDayEl.textContent = dayjs().add(3,'day').format('dddd');
-                            dayThreeDateEl.textContent = dayjs().add(3,'day').format('M/D/YYYY');
-                            dayFourDayEl.textContent = dayjs().add(4,'day').format('dddd');
-                            dayFourDateEl.textContent = dayjs().add(4,'day').format('M/D/YYYY');
-                            dayFiveDayEl.textContent = dayjs().add(5,'day').format('dddd');
-                            dayFiveDateEl.textContent = dayjs().add(5,'day').format('M/D/YYYY');
+                            for(var i = 0; i < 5; i++){
+                                weatherDescElements[i].innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png" /> ' + data.list[i].weather[0].description
+                            };
+                            for(var i = 0; i < 5; i++){
+                                tempElements[i].textContent = data.list[i].main.temp
+                            };
+                            for(var i = 0; i < 5; i++){
+                                humidityElements[i].textContent = data.list[i].main.humidity
+                            };
+                            for(var i = 0; i < 5; i++){
+                                windElements[i].textContent = data.list[i].wind.speed
+                            };
+                            for(var i = 1; i < 6; i++){
+                                dayOfWeekElements[i].textContent = dayjs().add(i,'day').format('dddd')
+                            };
+                            for(var i = 1; i < 6; i++){
+                                dateElements[i].textContent = dayjs().add(i,'day').format('M/D/YYYY')
+                            };
                         });
                 });
         } else {
@@ -184,41 +174,24 @@ function handleSearch(event){
                             return response.json();
                         })
                         .then(function(data){
-                            console.log(data);
-                            dayOneWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[0].weather[0].icon + '@2x.png" /> ' + data.list[0].weather[0].description
-                            dayTwoWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[1].weather[0].icon + '@2x.png" /> ' + data.list[1].weather[0].description
-                            dayThreeWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[2].weather[0].icon + '@2x.png" /> ' + data.list[2].weather[0].description
-                            dayFourWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[3].weather[0].icon + '@2x.png" /> ' + data.list[3].weather[0].description
-                            dayFiveWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[4].weather[0].icon + '@2x.png" /> ' + data.list[4].weather[0].description
-
-                            dayOneTempEl.textContent = data.list[0].main.temp
-                            dayTwoTempEl.textContent = data.list[1].main.temp
-                            dayThreeTempEl.textContent = data.list[2].main.temp
-                            dayFourTempEl.textContent = data.list[3].main.temp
-                            dayFiveTempEl.textContent = data.list[4].main.temp
-
-                            dayOneHumidityEl.textContent = data.list[0].main.humidity
-                            dayTwoHumidityEl.textContent = data.list[1].main.humidity
-                            dayThreeHumidityEl.textContent = data.list[2].main.humidity
-                            dayFourHumidityEl.textContent = data.list[3].main.humidity
-                            dayFiveHumidityEl.textContent = data.list[4].main.humidity
-                            
-                            dayOneWindEl.textContent = data.list[0].wind.speed
-                            dayTwoWindEl.textContent = data.list[1].wind.speed
-                            dayThreeWindEl.textContent = data.list[2].wind.speed
-                            dayFourWindEl.textContent = data.list[3].wind.speed
-                            dayFiveWindEl.textContent = data.list[4].wind.speed
-
-                            dayOneDayEl.textContent = dayjs().add(1,'day').format('dddd');
-                            dayOneDateEl.textContent = dayjs().add(1,'day').format('M/D/YYYY');
-                            dayTwoDayEl.textContent = dayjs().add(2,'day').format('dddd');
-                            dayTwoDateEl.textContent = dayjs().add(2,'day').format('M/D/YYYY');
-                            dayThreeDayEl.textContent = dayjs().add(3,'day').format('dddd');
-                            dayThreeDateEl.textContent = dayjs().add(3,'day').format('M/D/YYYY');
-                            dayFourDayEl.textContent = dayjs().add(4,'day').format('dddd');
-                            dayFourDateEl.textContent = dayjs().add(4,'day').format('M/D/YYYY');
-                            dayFiveDayEl.textContent = dayjs().add(5,'day').format('dddd');
-                            dayFiveDateEl.textContent = dayjs().add(5,'day').format('M/D/YYYY');
+                            for(var i = 0; i < 5; i++){
+                                weatherDescElements[i].innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png" /> ' + data.list[i].weather[0].description
+                            };
+                            for(var i = 0; i < 5; i++){
+                                tempElements[i].textContent = data.list[i].main.temp
+                            };
+                            for(var i = 0; i < 5; i++){
+                                humidityElements[i].textContent = data.list[i].main.humidity
+                            };
+                            for(var i = 0; i < 5; i++){
+                                windElements[i].textContent = data.list[i].wind.speed
+                            };
+                            for(var i = 1; i < 6; i++){
+                                dayOfWeekElements[i].textContent = dayjs().add(i,'day').format('dddd')
+                            };
+                            for(var i = 1; i < 6; i++){
+                                dateElements[i].textContent = dayjs().add(i,'day').format('M/D/YYYY')
+                            };
                         })
                 });
         } else {
