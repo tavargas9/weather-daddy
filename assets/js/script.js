@@ -62,18 +62,13 @@ var windElements = [
 function handleSearch(event){
     event.preventDefault();
     var searchValue = searchInput.value;
-    console.log(searchValue);
     //checks if searching by City or Zip:
     if (searchTypeSelector.value === 'City'){
         //if searching by City, follwing code executes:
         if (searchValue) {
             showFiveDayForecast();
-            if (!heroSection.classList.contains('hidden')){
-            heroSection.classList.add('hidden');
-            };
-            if (currentWeatherSectionEl.classList.contains('hidden')){
-                currentWeatherSectionEl.classList.remove('hidden');
-            };
+            hideHeroSection();
+            showWeatherSection();
             //follwing URL returns latitude and longitude by city name:
             let weatherUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchValue + '&limit=5&appid=d6785378d43b5947bd65e1cc7f7f5175';
             fetch(weatherUrl)
@@ -81,7 +76,6 @@ function handleSearch(event){
                     return response.json();
                 })
                 .then(function(data) {
-                    console.log(data);
                     currentCityEl.textContent = data[0].name + ', ' + data[0].state + ', ' + data[0].country;
                     //Following URL takes latitude and longitude and gets an array with weather data:
                     let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data[0].lat + '&lon=' + data[0].lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
@@ -90,7 +84,6 @@ function handleSearch(event){
                             return response.json();
                         })
                         .then(function(data){
-                            console.log(data);
                             currentWindSpeedEl.textContent = data.wind.speed
                             currentTempEl.textContent = data.main.temp
                             currentHumidityEl.textContent = data.main.humidity
@@ -134,12 +127,8 @@ function handleSearch(event){
     } else { //if searching for zip, following code executes: 
         if (searchValue) {
             showFiveDayForecast();
-            if (!heroSection.classList.contains('hidden')){
-            heroSection.classList.add('hidden');
-            };
-            if (currentWeatherSectionEl.classList.contains('hidden')){
-                currentWeatherSectionEl.classList.remove('hidden');
-            };
+            hideHeroSection();
+            showWeatherSection();
             //follwing URL returns latitude and longitude by zip:
             let weatherUrl = 'http://api.openweathermap.org/geo/1.0/zip?zip=' + searchValue + '&appid=d6785378d43b5947bd65e1cc7f7f5175';
             fetch(weatherUrl)
@@ -147,7 +136,6 @@ function handleSearch(event){
                     return response.json();
                 })
                 .then(function(data) {
-                    console.log(data);
                     currentCityEl.textContent = data.name + ', ' + data.country;
                     //Following URL takes latitude and longitude and gets an array with weather data:
                     let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data.lat + '&lon=' + data.lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
@@ -156,7 +144,6 @@ function handleSearch(event){
                             return response.json();
                         })
                         .then(function(data){
-                            console.log(data);
                             currentWindSpeedEl.textContent = data.wind.speed
                             currentTempEl.textContent = data.main.temp
                             currentHumidityEl.textContent = data.main.humidity
@@ -199,13 +186,25 @@ function handleSearch(event){
         } 
     }
     searchValue = '';
-    currentDateEl.textContent = dayjs().format('M/DD/YYYY');
+    currentDateEl.textContent = dayjs().format('M/D/YYYY');
 };
 
 
 function showFiveDayForecast() {
     if (fiveDayForecastEl.classList.contains('hidden')){
         fiveDayForecastEl.classList.remove('hidden');
+    };
+}
+
+function hideHeroSection() {
+    if (!heroSection.classList.contains('hidden')){
+        heroSection.classList.add('hidden');
+        };
+}
+
+function showWeatherSection() {
+    if (currentWeatherSectionEl.classList.contains('hidden')){
+        currentWeatherSectionEl.classList.remove('hidden');
     };
 }
 
