@@ -40,11 +40,24 @@ var dayFiveHumidityEl = document.getElementById('day5-humidity');
 var dayFiveWindEl = document.getElementById('day5-wind');
 var dayFiveTempEl = document.getElementById('day5-temp');
 
+var dayOneDayEl = document.getElementById('day1-dayOfWeek');
+var dayOneDateEl = document.getElementById('day1-date');
+var dayTwoDayEl = document.getElementById('day2-dayOfWeek');
+var dayTwoDateEl = document.getElementById('day2-date');
+var dayThreeDayEl = document.getElementById('day3-dayOfWeek');
+var dayThreeDateEl = document.getElementById('day3-date');
+var dayFourDayEl = document.getElementById('day4-dayOfWeek');
+var dayFourDateEl = document.getElementById('day4-date');
+var dayFiveDayEl = document.getElementById('day5-dayOfWeek');
+var dayFiveDateEl = document.getElementById('day5-date');
+
 function handleSearch(event){
     event.preventDefault();
     var searchValue = searchInput.value;
     console.log(searchValue);
+    //checks if searching by City or Zip:
     if (searchTypeSelector.value === 'City'){
+        //if searching by City, follwing code executes:
         if (searchValue) {
             showFiveDayForecast();
             if (!heroSection.classList.contains('hidden')){
@@ -53,6 +66,7 @@ function handleSearch(event){
             if (currentWeatherSectionEl.classList.contains('hidden')){
                 currentWeatherSectionEl.classList.remove('hidden');
             };
+            //follwing URL returns latitude and longitude by city name:
             let weatherUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchValue + '&limit=5&appid=d6785378d43b5947bd65e1cc7f7f5175';
             fetch(weatherUrl)
                 .then(function(response){
@@ -61,6 +75,7 @@ function handleSearch(event){
                 .then(function(data) {
                     console.log(data);
                     currentCityEl.textContent = data[0].name + ', ' + data[0].state + ', ' + data[0].country;
+                    //Following URL takes latitude and longitude and gets an array with weather data:
                     let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data[0].lat + '&lon=' + data[0].lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
                     fetch(latLonUrl)
                         .then(function(response){
@@ -109,12 +124,23 @@ function handleSearch(event){
                             dayThreeWindEl.textContent = data.list[2].wind.speed
                             dayFourWindEl.textContent = data.list[3].wind.speed
                             dayFiveWindEl.textContent = data.list[4].wind.speed
-                        })
+
+                            dayOneDayEl.textContent = dayjs().add(1,'day').format('dddd');
+                            dayOneDateEl.textContent = dayjs().add(1,'day').format('M/D/YYYY');
+                            dayTwoDayEl.textContent = dayjs().add(2,'day').format('dddd');
+                            dayTwoDateEl.textContent = dayjs().add(2,'day').format('M/D/YYYY');
+                            dayThreeDayEl.textContent = dayjs().add(3,'day').format('dddd');
+                            dayThreeDateEl.textContent = dayjs().add(3,'day').format('M/D/YYYY');
+                            dayFourDayEl.textContent = dayjs().add(4,'day').format('dddd');
+                            dayFourDateEl.textContent = dayjs().add(4,'day').format('M/D/YYYY');
+                            dayFiveDayEl.textContent = dayjs().add(5,'day').format('dddd');
+                            dayFiveDateEl.textContent = dayjs().add(5,'day').format('M/D/YYYY');
+                        });
                 });
         } else {
             alert('Invalid search');
         } 
-    } else {
+    } else { //if searching for zip, following code executes: 
         if (searchValue) {
             showFiveDayForecast();
             if (!heroSection.classList.contains('hidden')){
@@ -123,6 +149,7 @@ function handleSearch(event){
             if (currentWeatherSectionEl.classList.contains('hidden')){
                 currentWeatherSectionEl.classList.remove('hidden');
             };
+            //follwing URL returns latitude and longitude by zip:
             let weatherUrl = 'http://api.openweathermap.org/geo/1.0/zip?zip=' + searchValue + '&appid=d6785378d43b5947bd65e1cc7f7f5175';
             fetch(weatherUrl)
                 .then(function(response){
@@ -131,6 +158,7 @@ function handleSearch(event){
                 .then(function(data) {
                     console.log(data);
                     currentCityEl.textContent = data.name + ', ' + data.country;
+                    //Following URL takes latitude and longitude and gets an array with weather data:
                     let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data.lat + '&lon=' + data.lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
                     fetch(latLonUrl)
                         .then(function(response){
@@ -179,6 +207,17 @@ function handleSearch(event){
                             dayThreeWindEl.textContent = data.list[2].wind.speed
                             dayFourWindEl.textContent = data.list[3].wind.speed
                             dayFiveWindEl.textContent = data.list[4].wind.speed
+
+                            dayOneDayEl.textContent = dayjs().add(1,'day').format('dddd');
+                            dayOneDateEl.textContent = dayjs().add(1,'day').format('M/D/YYYY');
+                            dayTwoDayEl.textContent = dayjs().add(2,'day').format('dddd');
+                            dayTwoDateEl.textContent = dayjs().add(2,'day').format('M/D/YYYY');
+                            dayThreeDayEl.textContent = dayjs().add(3,'day').format('dddd');
+                            dayThreeDateEl.textContent = dayjs().add(3,'day').format('M/D/YYYY');
+                            dayFourDayEl.textContent = dayjs().add(4,'day').format('dddd');
+                            dayFourDateEl.textContent = dayjs().add(4,'day').format('M/D/YYYY');
+                            dayFiveDayEl.textContent = dayjs().add(5,'day').format('dddd');
+                            dayFiveDateEl.textContent = dayjs().add(5,'day').format('M/D/YYYY');
                         })
                 });
         } else {
