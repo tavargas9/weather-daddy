@@ -64,136 +64,12 @@ function handleSearch(event){
     var searchValue = searchInput.value;
     //checks if searching by City or Zip:
     if (searchTypeSelector.value === 'City'){
-        //if searching by City, follwing code executes:
-        if (searchValue) {
-            showFiveDayForecast();
-            hideHeroSection();
-            showWeatherSection();
-            //follwing URL returns latitude and longitude by city name:
-            let weatherUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchValue + '&limit=5&appid=d6785378d43b5947bd65e1cc7f7f5175';
-            fetch(weatherUrl)
-                .then(function(response){
-                    if (response.ok) {
-                    return response.json();
-                    } else {
-                        alert('No location found. Please enter a valid city')
-                    }
-                })
-                .then(function(data) {
-                    console.log(data);
-                    currentCityEl.textContent = data[0].name + ', ' + data[0].state + ', ' + data[0].country;
-                    //Following URL takes latitude and longitude and gets an array with weather data:
-                    let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data[0].lat + '&lon=' + data[0].lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
-                    fetch(latLonUrl)
-                        .then(function(response){
-                            return response.json();
-                        })
-                        .then(function(data){
-                            currentWindSpeedEl.textContent = data.wind.speed
-                            currentTempEl.textContent = data.main.temp
-                            currentHumidityEl.textContent = data.main.humidity
-                            currentWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png" /> ' + data.weather[0].description
-                        });
-                });
-            fetch(weatherUrl)
-                .then(function(response){
-                    return response.json();
-                })
-                .then(function(data){
-                    let fiveDayUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + data[0].lat + '&lon=' + data[0].lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial'
-                    fetch(fiveDayUrl)
-                        .then(function(response){
-                            return response.json();
-                        })
-                        .then(function(data){
-                            for(var i = 0; i < 5; i++){
-                                weatherDescElements[i].innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png" /> ' + data.list[i].weather[0].description
-                            };
-                            for(var i = 0; i < 5; i++){
-                                tempElements[i].textContent = data.list[i].main.temp
-                            };
-                            for(var i = 0; i < 5; i++){
-                                humidityElements[i].textContent = data.list[i].main.humidity
-                            };
-                            for(var i = 0; i < 5; i++){
-                                windElements[i].textContent = data.list[i].wind.speed
-                            };
-                            for(var i = 1; i < 6; i++){
-                                dayOfWeekElements[i].textContent = dayjs().add(i,'day').format('dddd')
-                            };
-                            for(var i = 1; i < 6; i++){
-                                dateElements[i].textContent = dayjs().add(i,'day').format('M/D/YYYY')
-                            };
-                        });
-                });
-        } else {
-            alert('Please enter a location');
-        } 
-    } else { //if searching for zip, following code executes: 
-        if (searchValue) {
-            showFiveDayForecast();
-            hideHeroSection();
-            showWeatherSection();
-            //follwing URL returns latitude and longitude by zip:
-            let weatherUrl = 'http://api.openweathermap.org/geo/1.0/zip?zip=' + searchValue + '&appid=d6785378d43b5947bd65e1cc7f7f5175';
-            fetch(weatherUrl)
-                .then(function(response){
-                    if (response.ok) {
-                    return response.json();
-                    } else {
-                        alert('Error: No location found. Please enter a vaild zip code.')
-                    }
-                })
-                .then(function(data) {
-                    currentCityEl.textContent = data.name + ', ' + data.country;
-                    //Following URL takes latitude and longitude and gets an array with weather data:
-                    let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data.lat + '&lon=' + data.lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
-                    fetch(latLonUrl)
-                        .then(function(response){
-                            return response.json();
-                        })
-                        .then(function(data){
-                            currentWindSpeedEl.textContent = data.wind.speed
-                            currentTempEl.textContent = data.main.temp
-                            currentHumidityEl.textContent = data.main.humidity
-                            currentWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png" /> ' + data.weather[0].description
-                        })
-                });
-            fetch(weatherUrl)
-                .then(function(response){
-                    return response.json();
-                })
-                .then(function(data){
-                    let fiveDayUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + data.lat + '&lon=' + data.lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial'
-                    fetch(fiveDayUrl)
-                        .then(function(response){
-                            return response.json();
-                        })
-                        .then(function(data){
-                            for(var i = 0; i < 5; i++){
-                                weatherDescElements[i].innerHTML = ' <img src="https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png" /> ' + data.list[i].weather[0].description
-                            };
-                            for(var i = 0; i < 5; i++){
-                                tempElements[i].textContent = data.list[i].main.temp
-                            };
-                            for(var i = 0; i < 5; i++){
-                                humidityElements[i].textContent = data.list[i].main.humidity
-                            };
-                            for(var i = 0; i < 5; i++){
-                                windElements[i].textContent = data.list[i].wind.speed
-                            };
-                            for(var i = 1; i < 6; i++){
-                                dayOfWeekElements[i].textContent = dayjs().add(i,'day').format('dddd')
-                            };
-                            for(var i = 1; i < 6; i++){
-                                dateElements[i].textContent = dayjs().add(i,'day').format('M/D/YYYY')
-                            };
-                        })
-                });
-        } else {
-            alert('please enter a valid zip code');
-        } 
-    }
+        //if searching by City, follwing function executes:
+        getCityForecast(searchValue);
+    } else { 
+        //if searching for zip, following code executes:  
+        getZipForecast(searchValue);
+    };
     searchValue = '';
     currentDateEl.textContent = dayjs().format('M/D/YYYY');
 };
@@ -217,46 +93,86 @@ function showWeatherSection() {
     };
 }
 
-function getRandomLatitude() {
-    // Generate a random number
-    const randomNumber = Math.floor(Math.random() * 18001) - 9000;
-    // Scale the random number to be two decimal places
-    const scaledNumber = randomNumber / 100;
-    return scaledNumber;
+function getCityForecast(input) {
+    if (input) {
+        //follwing URL returns latitude and longitude by city name:
+        let weatherUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=5&appid=d6785378d43b5947bd65e1cc7f7f5175';
+        fetch(weatherUrl)
+            .then(function(response){
+                if (response.ok) {
+                return response.json();
+                } else {
+                    alert('Error: ' + response.status);
+                }
+            })
+            .then(function(data) {
+                if (data.length !== 0) {
+                    displayCurrentCityForecast(data);
+                    showFiveDayForecast();
+                    hideHeroSection();
+                    showWeatherSection();
+                } else {
+                    alert('Please enter a valid location');
+                    return;
+                };
+                
+            });
+        fetch(weatherUrl)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                let fiveDayUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + data[0].lat + '&lon=' + data[0].lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial'
+                fetch(fiveDayUrl)
+                    .then(function(response){
+                        return response.json();
+                    })
+                    .then(function(data){
+                        display5DayForecast(data);
+                    });
+            });
+    } else {
+        alert('Please enter a location');
+    };
 };
 
-function getRandomLongitude() {
-    // Generate a random number between -18000 and 18000
-    const randomNumber = Math.floor(Math.random() * 36001) - 18000;
-    // Scale the random number to have two decimal places
-    const scaledNumber = randomNumber / 100;
-    return scaledNumber;
-};
-  
-function showRandomForecast (randomLat, randomLon) {
-    var randomLat = getRandomLatitude();
-    var randomLon = getRandomLongitude();
-    console.log(randomLat, randomLon);
-
-    let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + randomLat + '&lon=' + randomLon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
-    fetch(latLonUrl)
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(data){
-        console.log(data);
-        displayRandomForecast(data);
-    })
-
-    let fiveDayUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + randomLat + '&lon=' + randomLon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial'
-    fetch(fiveDayUrl)
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(data){
-        display5DayForecast(data);
-    });
-};
+function getZipForecast(input) {
+    if (input) {
+        //follwing URL returns latitude and longitude by zip:
+        let weatherUrl = 'http://api.openweathermap.org/geo/1.0/zip?zip=' + input + '&appid=d6785378d43b5947bd65e1cc7f7f5175';
+        fetch(weatherUrl)
+            .then(function(response){
+                if (response.ok) {
+                return response.json();
+                } else {
+                    alert('No location found. Please enter a vaild zip code.')
+                    return;
+                }
+            })
+            .then(function(data) {
+                displayCurrentZipForecast(data);
+                showFiveDayForecast();
+                hideHeroSection();
+                showWeatherSection();
+            });
+        fetch(weatherUrl)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                let fiveDayUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + data.lat + '&lon=' + data.lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial'
+                fetch(fiveDayUrl)
+                    .then(function(response){
+                        return response.json();
+                    })
+                    .then(function(data){
+                        display5DayForecast(data);
+                    })
+            });
+    } else {
+        alert('please enter a valid zip code');
+    }
+}
 
 function display5DayForecast (forecast) {
     for(var i = 0; i < 5; i++){
@@ -277,6 +193,77 @@ function display5DayForecast (forecast) {
     for(var i = 1; i < 6; i++){
         dateElements[i].textContent = dayjs().add(i,'day').format('M/D/YYYY')
     };
+};
+
+function displayCurrentCityForecast(forecast) {
+    currentCityEl.textContent = forecast[0].name + ', ' + forecast[0].state + ', ' + forecast[0].country;
+    //Following URL takes latitude and longitude and gets an array with weather data:
+    let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + forecast[0].lat + '&lon=' + forecast[0].lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
+    fetch(latLonUrl)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(forecast){
+            currentWindSpeedEl.textContent = forecast.wind.speed
+            currentTempEl.textContent = forecast.main.temp
+            currentHumidityEl.textContent = forecast.main.humidity
+            currentWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png" /> ' + forecast.weather[0].description
+        });
+};
+
+function displayCurrentZipForecast(forecast) {
+    currentCityEl.textContent = forecast.name + ', ' + forecast.country;
+    //Following URL takes latitude and longitude and gets an array with weather data:
+    let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + forecast.lat + '&lon=' + forecast.lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
+    fetch(latLonUrl)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(forecast){
+            currentWindSpeedEl.textContent = forecast.wind.speed
+            currentTempEl.textContent = forecast.main.temp
+            currentHumidityEl.textContent = forecast.main.humidity
+            currentWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png" /> ' + forecast.weather[0].description
+        })
+}
+
+function getRandomLatitude() {
+    // Generate a random number between -9000 and 9000
+    const randomNumber = Math.floor(Math.random() * 18001) - 9000;
+    // Set the random number to have two decimal places
+    const scaledNumber = randomNumber / 100;
+    return scaledNumber;
+};
+
+function getRandomLongitude() {
+    // Generate a random number between -18000 and 18000
+    const randomNumber = Math.floor(Math.random() * 36001) - 18000;
+    // Set the random number to have two decimal places
+    const scaledNumber = randomNumber / 100;
+    return scaledNumber;
+};
+  
+function showRandomForecast (randomLat, randomLon) {
+    var randomLat = getRandomLatitude();
+    var randomLon = getRandomLongitude();
+
+    let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + randomLat + '&lon=' + randomLon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
+    fetch(latLonUrl)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        displayRandomForecast(data);
+    })
+
+    let fiveDayUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + randomLat + '&lon=' + randomLon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial'
+    fetch(fiveDayUrl)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        display5DayForecast(data);
+    });
 };
 
 function displayRandomForecast(forecast) {
