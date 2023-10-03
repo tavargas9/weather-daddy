@@ -96,7 +96,7 @@ function showWeatherSection() {
 function getCityForecast(input) {
     if (input) {
         //follwing URL returns latitude and longitude by city name:
-        let weatherUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=5&appid=d6785378d43b5947bd65e1cc7f7f5175';
+        let weatherUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=5&appid=d6785378d43b5947bd65e1cc7f7f5175';
         fetch(weatherUrl)
             .then(function(response){
                 if (response.ok) {
@@ -139,7 +139,7 @@ function getCityForecast(input) {
 function getZipForecast(input) {
     if (input) {
         //follwing URL returns latitude and longitude by zip:
-        let weatherUrl = 'http://api.openweathermap.org/geo/1.0/zip?zip=' + input + '&appid=d6785378d43b5947bd65e1cc7f7f5175';
+        let weatherUrl = 'https://api.openweathermap.org/geo/1.0/zip?zip=' + input + '&appid=d6785378d43b5947bd65e1cc7f7f5175';
         fetch(weatherUrl)
             .then(function(response){
                 if (response.ok) {
