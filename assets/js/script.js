@@ -217,6 +217,92 @@ function showWeatherSection() {
     };
 }
 
+function getRandomLatitude() {
+    // Generate a random number
+    const randomNumber = Math.floor(Math.random() * 18001) - 9000;
+    // Scale the random number to be two decimal places
+    const scaledNumber = randomNumber / 100;
+    return scaledNumber;
+};
+
+function getRandomLongitude() {
+    // Generate a random number between -18000 and 18000
+    const randomNumber = Math.floor(Math.random() * 36001) - 18000;
+    // Scale the random number to have two decimal places
+    const scaledNumber = randomNumber / 100;
+    return scaledNumber;
+};
+  
+function showRandomForecast (randomLat, randomLon) {
+    var randomLat = getRandomLatitude();
+    var randomLon = getRandomLongitude();
+    console.log(randomLat, randomLon);
+
+    let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + randomLat + '&lon=' + randomLon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
+    fetch(latLonUrl)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        console.log(data);
+        displayRandomForecast(data);
+    })
+
+    let fiveDayUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + randomLat + '&lon=' + randomLon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial'
+    fetch(fiveDayUrl)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        display5DayForecast(data);
+    });
+};
+
+function display5DayForecast (forecast) {
+    for(var i = 0; i < 5; i++){
+        weatherDescElements[i].innerHTML = ' <img src="https://openweathermap.org/img/wn/' + forecast.list[i].weather[0].icon + '@2x.png" /> ' + forecast.list[i].weather[0].description
+    };
+    for(var i = 0; i < 5; i++){
+        tempElements[i].textContent = forecast.list[i].main.temp
+    };
+    for(var i = 0; i < 5; i++){
+        humidityElements[i].textContent = forecast.list[i].main.humidity
+    };
+    for(var i = 0; i < 5; i++){
+        windElements[i].textContent = forecast.list[i].wind.speed
+    };
+    for(var i = 1; i < 6; i++){
+        dayOfWeekElements[i].textContent = dayjs().add(i,'day').format('dddd')
+    };
+    for(var i = 1; i < 6; i++){
+        dateElements[i].textContent = dayjs().add(i,'day').format('M/D/YYYY')
+    };
+};
+
+function displayRandomForecast(forecast) {
+    //checks whether randomLat and randomLon is in a named location and runs functions until it is true.
+    if (!forecast.name){
+        getRandomLatitude();
+        getRandomLongitude();
+        var randomLa = getRandomLatitude();
+        var randomLo = getRandomLongitude();
+        showRandomForecast(randomLa, randomLo);
+    } else {
+        hideHeroSection();
+        showWeatherSection();
+        showFiveDayForecast();
+        currentCityEl.textContent = forecast.name + ', ' + forecast.sys.country
+        currentWindSpeedEl.textContent = forecast.wind.speed
+        currentTempEl.textContent = forecast.main.temp
+        currentHumidityEl.textContent = forecast.main.humidity
+        currentWeatherDescEl.innerHTML = ' <img src="https://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png" /> ' + forecast.weather[0].description
+        currentDateEl.textContent = dayjs().format('M/D/YYYY');
+    };
+};
+
+var randomForecastBtn = document.getElementById('random-forecast-btn');
+
+randomForecastBtn.addEventListener('click', showRandomForecast);
 
 
 searchBarForm.addEventListener('submit', handleSearch);
