@@ -379,8 +379,13 @@ var viewHistoryBtn = document.getElementById('view-history-btn');
 
 viewHistoryBtn.addEventListener('click', function(event) {
     event.preventDefault();
-    hideHeroSection();
-    showHistory();
+    var storedHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    if (storedHistory) {
+        hideHeroSection();
+        showHistory();
+    } else {
+        alert('No search history found!');
+    };
 });
 
 var clearHistoryBtn = document.getElementById('clear-history-btn');
