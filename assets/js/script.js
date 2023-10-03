@@ -73,9 +73,14 @@ function handleSearch(event){
             let weatherUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchValue + '&limit=5&appid=d6785378d43b5947bd65e1cc7f7f5175';
             fetch(weatherUrl)
                 .then(function(response){
+                    if (response.ok) {
                     return response.json();
+                    } else {
+                        alert('No location found. Please enter a valid city')
+                    }
                 })
                 .then(function(data) {
+                    console.log(data);
                     currentCityEl.textContent = data[0].name + ', ' + data[0].state + ', ' + data[0].country;
                     //Following URL takes latitude and longitude and gets an array with weather data:
                     let latLonUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + data[0].lat + '&lon=' + data[0].lon + '&appid=d6785378d43b5947bd65e1cc7f7f5175&units=imperial';
@@ -122,7 +127,7 @@ function handleSearch(event){
                         });
                 });
         } else {
-            alert('Invalid search');
+            alert('Please enter a location');
         } 
     } else { //if searching for zip, following code executes: 
         if (searchValue) {
@@ -133,7 +138,11 @@ function handleSearch(event){
             let weatherUrl = 'http://api.openweathermap.org/geo/1.0/zip?zip=' + searchValue + '&appid=d6785378d43b5947bd65e1cc7f7f5175';
             fetch(weatherUrl)
                 .then(function(response){
+                    if (response.ok) {
                     return response.json();
+                    } else {
+                        alert('Error: No location found. Please enter a vaild zip code.')
+                    }
                 })
                 .then(function(data) {
                     currentCityEl.textContent = data.name + ', ' + data.country;
