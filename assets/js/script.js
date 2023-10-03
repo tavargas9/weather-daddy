@@ -315,7 +315,7 @@ function renderHistory() {
     for (var i = 0; i < searchHistory.length; i++) {
         var historyItem = searchHistory[i];
         var li = document.createElement('li');
-        li.innerHTML = '<li class="w-full px-4 py-2 border-b border-gray-200">' + historyItem + '</li>';
+        li.innerHTML = '<li class="w-full px-4 py-2 border-b border-gray-200 cursor-pointer">' + historyItem + '</li>';
         searchHistoryList.appendChild(li);
     };
 };
@@ -356,6 +356,25 @@ function showHistory() {
     };
 };
 
+searchHistoryList.addEventListener('click', function(event){
+    var element = event.target;
+
+    if (element.matches('li') === true) {
+        var searchForThis = element.textContent;
+        console.log(searchForThis);
+            //checks if searching by City or Zip:
+        if (!isNaN(searchForThis)){
+            //if searching by City, follwing function executes:
+            getZipForecast(searchForThis);
+        } else { 
+            //if searching for zip, following code executes:  
+            getCityForecast(searchForThis);
+        };
+        currentDateEl.textContent = dayjs().format('M/D/YYYY');
+        window.scrollTo(0, 0);
+    };
+})
+
 var viewHistoryBtn = document.getElementById('view-history-btn');
 
 viewHistoryBtn.addEventListener('click', function(event) {
@@ -370,5 +389,7 @@ clearHistoryBtn.addEventListener('click', function(){
     localStorage.clear();
     location.reload();
 });
+
+
 
 init();
