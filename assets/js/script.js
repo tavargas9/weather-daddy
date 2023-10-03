@@ -59,8 +59,8 @@ var windElements = [
 ]
 
 
-function handleSearch(event){
-    event.preventDefault();
+function handleSearch(){
+    // event.preventDefault();
     var searchValue = searchInput.value;
     //checks if searching by City or Zip:
     if (searchTypeSelector.value === 'City'){
@@ -292,7 +292,11 @@ var randomForecastBtn = document.getElementById('random-forecast-btn');
 randomForecastBtn.addEventListener('click', showRandomForecast);
 
 
-searchBarForm.addEventListener('submit', handleSearch);
+searchBarForm.addEventListener('submit', function(event){
+    event.preventDefault();
+    handleSearch();
+    pushHistory();
+});
 searchBtn.addEventListener('click', function(){
     window.scrollTo(0, 0);
 });
@@ -300,3 +304,71 @@ headerLogoBtn.addEventListener('click', function(){
     location.reload();
     window.scrollTo(0, 0);
 });
+
+
+var searchHistorySection = document.getElementById('previous-searches-section');
+var searchHistoryList = document.getElementById('previous-searches-list');
+var searchHistory = [];
+
+function renderHistory() {
+    searchHistoryList.innerHTML = '';
+    for (var i = 0; i < searchHistory.length; i++) {
+        var historyItem = searchHistory[i];
+        var li = document.createElement('li');
+        li.innerHTML = '<li class="w-full px-4 py-2 border-b border-gray-200">' + historyItem + '</li>';
+        searchHistoryList.appendChild(li);
+    };
+};
+
+// This function is being called below and will run when the page loads.
+function init() {
+    // Get stored history from localStorage
+    var storedHistory = JSON.parse(localStorage.getItem("searchHistory"));
+  
+    // If history is retrieved from localStorage, update the searchHistory array to it
+    if (storedHistory !== null) {
+      searchHistory = storedHistory;
+    }
+
+    renderHistory();
+};
+
+function storeHistory() {
+    // Stringify and set key in localStorage to todos array
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+};
+
+function pushHistory() {
+    var searchText = searchInput.value.trim();
+    if (searchText === '') {
+        return;
+    }
+    searchHistory.push(searchText);
+    searchInput.value = '';
+    storeHistory();
+    renderHistory();
+    showHistory();
+};
+
+function showHistory() {
+    if (searchHistorySection.classList.contains('hidden')) {
+        searchHistorySection.classList.remove('hidden');
+    };
+};
+
+var viewHistoryBtn = document.getElementById('view-history-btn');
+
+viewHistoryBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    hideHeroSection();
+    showHistory();
+});
+
+var clearHistoryBtn = document.getElementById('clear-history-btn');
+
+clearHistoryBtn.addEventListener('click', function(){
+    localStorage.clear();
+    location.reload();
+});
+
+init();

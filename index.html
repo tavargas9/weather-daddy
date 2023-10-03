@@ -49,7 +49,7 @@
                 <p class="mt-6 text-lg leading-8 text-gray-600">Use the search bar in the header above to search by city or zip code and see the current weather data and a 5-day weather forecast.</p>
                 <div class="mt-10 flex items-center justify-center gap-x-6">
                 <a id="random-forecast-btn" href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get a random forecast</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+                <a id="view-history-btn" href="#" class="text-sm font-semibold leading-6 text-gray-900">View search history <span aria-hidden="true">→</span></a>
                 </div>
             </div>
             </div>
@@ -236,6 +236,16 @@
             </div>
 
          </div>
+    <!--Search history section-->
+    <div id="previous-searches-section" class="flex flex-col justify-center items-center my-36 hidden">
+        <h5 class="text-4xl font-bold tracking-tight text-indigo-600 sm:text-6xl">Previous Searches:</h5>
+        <ul id="previous-searches-list" class="w-3/4 text-sm font-medium text-gray-900 bg-white border rounded-lg my-16 text-center">
+
+        </ul>
+        <a id="clear-history-btn" href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            Clear search history
+        </a>
+    </div>
      
     </main>
 
@@ -245,7 +255,7 @@
         <div class="text-center">
             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase ">About</h2>
             <p class="text-gray-500 font-medium">
-           Web Daddy was designed and developed by Tony Vargas (tavargas9). This application gives users weather data based on city or zipcode. Use the search bar at the top of the page to get going!
+           Weather Daddy was designed and developed by Tomas Vargas (tavargas9). This application gives users weather data based on city or zipcode. Use the search bar at the top of the page to get going!
             </p>
         </div>
 
