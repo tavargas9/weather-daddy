@@ -9,6 +9,7 @@ A simple weather dashboard web application for seeing a breif 5-day weather outl
 - [Acceptance Criteria](#acceptance-criteria)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
+- [Credits](#credits)
 - [License](#license)
 
 ## User Story
@@ -35,7 +36,24 @@ THEN I am again presented with current and future conditions for that city
 
 ## Usage
 
+To use this application, go to the deployed website [here](https://tavargas9.github.io/weather-daddy/).
+
+![Screenshot](./assets/icons/Screenshot%202023-10-03%20at%201.53.38%20AM.png)
+
+- The search bar at the top of the screen is used to find weather data by location.
+- To search for a city by name, select "City" from the dropdown menu and enter the city name in the search bar.
+- To search for a city by zip code, select "Zip" from the dropdown menu and enter a zip code into the search bar. 
+- If you would like to see a weather forecast for a random city, hit the "Get random forecast" button on the home screen.
+- Every location you search for will be saved to your search history. To view search history from the home screen, hit the "View search history" link. Otherwise, search history will appear at the bottom of the page.
+- To return to the homepage, click on the "Weather Daddy" logo at the top left corner of the screen.
+
 ## Technologies Used
+
+Tailwind CSS, jQuery, OpenWeather API, Day.js, JavaScript
+
+## Credits
+
+Thanks to [erikflowers](https://github.com/erikflowers) for the [Weather Icons](https://github.com/erikflowers/weather-icons) used in this project.
 
 ## License
 

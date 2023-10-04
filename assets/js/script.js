@@ -67,7 +67,7 @@ function handleSearch(){
         //if searching by City, follwing function executes:
         getCityForecast(searchValue);
     } else { 
-        //if searching for zip, following code executes:  
+        //if searching for zip, following function executes:  
         getZipForecast(searchValue);
     };
     searchValue = '';
@@ -95,7 +95,7 @@ function showWeatherSection() {
 
 function getCityForecast(input) {
     if (input) {
-        //follwing URL returns latitude and longitude by city name:
+        //following URL returns latitude and longitude by city name:
         let weatherUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=5&appid=d6785378d43b5947bd65e1cc7f7f5175';
         fetch(weatherUrl)
             .then(function(response){
@@ -138,7 +138,7 @@ function getCityForecast(input) {
 
 function getZipForecast(input) {
     if (input) {
-        //follwing URL returns latitude and longitude by zip:
+        //following URL returns latitude and longitude by zip:
         let weatherUrl = 'https://api.openweathermap.org/geo/1.0/zip?zip=' + input + '&appid=d6785378d43b5947bd65e1cc7f7f5175';
         fetch(weatherUrl)
             .then(function(response){
@@ -364,10 +364,10 @@ searchHistoryList.addEventListener('click', function(event){
         console.log(searchForThis);
             //checks if searching by City or Zip:
         if (!isNaN(searchForThis)){
-            //if searching by City, follwing function executes:
+            //if searching for zip, following function executes:
             getZipForecast(searchForThis);
         } else { 
-            //if searching for zip, following code executes:  
+            //if searching for city, following code executes:  
             getCityForecast(searchForThis);
         };
         currentDateEl.textContent = dayjs().format('M/D/YYYY');
